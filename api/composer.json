@@ -1,0 +1,20 @@
+{
+    "name": "startklar/api",
+    "description": "a simple deckbuilding and archive application",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Startklar\\Api\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Lukas Stuppacher",
+            "email": "magicluks@live.at"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "firebase/php-jwt": "^6.10"
+    }
+}
