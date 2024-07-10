@@ -1,10 +1,15 @@
 {
-    "name": "startklar/api",
+    "name": "lustu/deckbuilder-archive",
     "description": "a simple deckbuilding and archive application",
+    "type": "project",
+    "require": {
+        "monolog/monolog": "^3.5",
+        "firebase/php-jwt": "^6.10"
+    },
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Startklar\\Api\\": "src/"
+            "deckbuilder_archive_php_version_only\\api\\": "src/"
         }
     },
     "authors": [
@@ -13,8 +18,5 @@
             "email": "magicluks@live.at"
         }
     ],
-    "minimum-stability": "stable",
-    "require": {
-        "firebase/php-jwt": "^6.10"
-    }
+    "minimum-stability": "stable"
 }

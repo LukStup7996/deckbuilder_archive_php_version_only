@@ -7,9 +7,17 @@ namespace Composer\Autoload;
 class ComposerStaticInit2c838992c3d140ddf7a92ea65fdc18da
 {
     public static $prefixLengthsPsr4 = array (
-        'S' => 
+        'd' => 
         array (
-            'Startklar\\Api\\' => 14,
+            'deckbuilder_archive_php_version_only\\api\\' => 41,
+        ),
+        'P' => 
+        array (
+            'Psr\\Log\\' => 8,
+        ),
+        'M' => 
+        array (
+            'Monolog\\' => 8,
         ),
         'F' => 
         array (
@@ -18,9 +26,17 @@ class ComposerStaticInit2c838992c3d140ddf7a92ea65fdc18da
     );
 
     public static $prefixDirsPsr4 = array (
-        'Startklar\\Api\\' => 
+        'deckbuilder_archive_php_version_only\\api\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
+        ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/src',
+        ),
+        'Monolog\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
         'Firebase\\JWT\\' => 
         array (
