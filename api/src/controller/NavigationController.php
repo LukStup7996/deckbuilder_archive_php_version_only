@@ -19,6 +19,11 @@ class NavigationController
     }
 
     public function route(){
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With, Set-Cookie");
+        header("Access-Control-Allow-Credentials: true");
+
         $action = filter_input(INPUT_GET, "action", FILTER_SANITIZE_STRING);
         switch(strtolower($action)){
             case 'filterallcards':
