@@ -1,9 +1,9 @@
-*"# deckbuilder_archive_php_version_only" *
+"# deckbuilder_archive_php_version_only" 
 
 This project has been created as part of my portfolio and uses the MIT licsence. Any images and data used that are intellectual property of their respective authors/creators are not used for financial gains. This is a simple portfolio meant to show my personal skills, when it comes to working as a software developer. It is nice to look at and this version will not be hosted on any web browser. It can only be used locally and is meant as an hommage to my favourite part time activity.  
 
 **What is this project all about?**
-After 6 moonths of programming and working on a project all by myself I have decided to finally properly document this pet project of mine on GitHub. 
+After 6 months of programming and working on a project all by myself I have decided to finally properly document this pet project of mine on GitHub. 
 Intended as a part of my portfolio, I chose to create a SPA that combines one of my favourite hobbies, trading cards, with the skills I have acquired since the year 2022, during my studies at the Unviversity of Applied Scieneces Technikum Wien and beyond that. 
 Now as the title suggest this is ONLY the backend version. The reasoning behind this is, that I am very pleased by how smoothly this particular version of my PHP backend looks and operates, BUT I have encountered a particular error, that requires me to make significant changes, after six months.
 And since I am very happy with this version, I chose to create a seperate repository to share and more importantly to highlight the differences between the pure backend version and the later integrated fullstack version.
@@ -33,8 +33,8 @@ Yes and no. For one I will be using my project as a template, which means if I e
 That is a question I sadly cannot acurately answer just yet. Simply because I do not have enough experience just yet. But we will find out how fast I can reprogramm an allready functioning project. Think of it like programming your third online shop for your customers. At some point there will be slight differences between every interface, but at the core, their functions and logic largely stay the same.
 
 **How do I install your project?**
-First of all funny voice! Love it, keep it going!
-Second it is rather simple. You will need to setup your own server environment. I personally suggest xampp, since it is easy to install and setup, but any server environment you are comfortable with (and that supprots PHP) works. Then you can either create a new database named deckbuilder_archive and simply copy the contents of the deckbuilder_archive_xampp_MySQL_database_contents.pdf file into  your SQL querry. If, you have issues with properly running the code, try creating the tables seperately first and use the added ALTER TABLE commands to make sure all constraints work properly. Then you can INSERT all the data by copy and pasting the remaining command lines into your SQL querry box. Alternatively you will also find a database copy with v.0.0.6 as a part of the documentation.
+First of all you will need to setup your own server environment. I personally suggest xampp, since it is easy to install and setup, but any server environment you are comfortable with (and that supprots PHP) works. Then you can either create a new database named deckbuilder_archive and simply copy the contents of the deckbuilder_archive_xampp_MySQL_database_contents.pdf file into  your SQL querry. 
+If, you encounter issues with properly running the code, try creating the tables seperately instead and use the added ALTER TABLE commands to make sure all constraints work properly. Then you can INSERT all the data by copy and pasting the remaining command lines into your SQL querry box. Alternatively you will also find a database copy with v.0.0.6 as a part of the documentation.
 Lastly just pull the entire project into your server environment folders (htdocs for xampp as an example) and alter the config.php file, so that it contains the neccessary baseURL and DB-Connection settings you are using.
 
 **How do I use your deckbuilder_archive?**
