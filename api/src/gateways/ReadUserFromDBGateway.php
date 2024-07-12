@@ -64,22 +64,7 @@ class ReadUserFromDBGateway
             return false;
         }
     }
-    public function updateMailAdressByMailAdress($mailAdres, $newMailAdress){
-        $checkForCollison = $this->getUserByMailAdress($newMailAdress);
-        if($checkForCollison !==null){
-            return false;
-        }else{
-            $sql = "UPDATE archiveuser SET mail_adress = :newMailAdress WHERE mail_adress = :mailAdress";
-            $statement = $this->pdo->prepare($sql);
-            $statement->bindParam(':newMailAdress', $newMailAdress);
-            $statement->bindParam(':mailAdress',$mailAdres);
-            if($statement->rowCount() > 0){
-                return true;
-            }else{
-                return false;
-            }
-        }
-    }
+    
     public function deleteArchiveUser($mailAdress){
         if(!$mailAdress){
             $failure = "No Data was received";
@@ -97,7 +82,7 @@ class ReadUserFromDBGateway
     public function processUserData($userId){
         $sqlDeckIdentifier = "SELECT deck_id FROM decklists WHERE user_id = :userId";
         $statement = $this->pdo->prepare($sqlDeckIdentifier);
-        $statement->bindParam(':deckId', $userId);
+        $statement->bindParam(':userId', $userId);
         $statement->execute();
         $deckDataIdentified = $statement->fetch(PDO::FETCH_OBJ);
         if($deckDataIdentified){
@@ -118,6 +103,7 @@ class ReadUserFromDBGateway
         $statementDeckDeletor = $this->pdo->prepare($sqlDeletDecklist);
         $statementDeckDeletor->bindParam(':userId', $deckId);
         $statementDeckDeletor->execute();
+        return true;
     }
     public function terminateUser($userId){
         $sqlTerminateUser = "DELETE FROM archiveuser WHERE user_id= :userId";

@@ -47,13 +47,6 @@ class UserAccountController
                     $this->jsonView->display($userMail);
                 }
                 break;
-            case 'updatearchivermail':
-                $newEmailInput = filter_input(INPUT_GET, "newmailadress", FILTER_SANITIZE_EMAIL);
-                $legalityCheck = $this->checkForAccessLegality();
-                if($legalityCheck !== null){
-                    $this->updateMailAdress($legalityCheck, $newEmailInput);
-                }
-                break;
             case 'updatearchivername':
                 $newNameInput = filter_input(INPUT_GET, "newusername", FILTER_SANITIZE_STRING);
                 $legalityCheck = $this->checkForAccessLegality();
@@ -65,7 +58,7 @@ class UserAccountController
                 $newPasswordInput = filter_input(INPUT_GET, "newpassword", FILTER_SANITIZE_STRING);
                 $legalityCheck = $this->checkForAccessLegality();
                 if($legalityCheck !== null){
-                    $this->updateMailAdress($legalityCheck, $newPasswordInput);
+                    $this->updateUserPassword($legalityCheck, $newPasswordInput);
                 }
                 break;
             case 'deletearchiver':
@@ -91,8 +84,7 @@ class UserAccountController
     }
     private function checkForAccessLegality(){
         if(isset($_SESSION['user'])){
-            $user = unserialize($_SESSION['user']);
-            $userId = $user['user_id'];
+            $userId = $_SESSION['user']['user_id'];
             $userData = $this->accountGateway->getUserByID($userId);
             $legalMailAdress = $userData->mail_adress;
             return $legalMailAdress;
@@ -123,7 +115,7 @@ class UserAccountController
                     'user_id' => $userlogin->user_id,
                     'user_name' => $userlogin->archive_name,
                 );
-                $_SESSION['user'] = serialize($userToken);
+                $_SESSION['user'] = $userToken;
                 return "OK";
             }else{
                 return "ERROR";
@@ -157,15 +149,7 @@ class UserAccountController
             $this->jsonView->display("Failed to update user name for user with email ".$emailInput);
         }
     }
-    public function updateMailAdress($emailInput,$newMailAdress) {
-        $success = $this->accountGateway->updateMailAdressByMailAdress($emailInput, $newMailAdress);
     
-        if ($success) {
-            $this->jsonView->display("Mail Adress for Archiver with email ". $emailInput ." updated successfully");
-        } else {
-            $this->jsonView->display("Failed to update mail adress for user with email ".$emailInput);
-        }
-    }
     private function terminateArchiveuser($mailAdress){
         $succes = $this->accountGateway->deleteArchiveUser($mailAdress);
         if($succes){ 
