@@ -48,7 +48,9 @@ class NavigationController
             case 'loginarchiver':
             case 'logoutarchiver':
             case 'getarchiver':
-            case 'updatearchiver':
+            case 'updatearchivermail':
+            case 'updatearchivername':
+            case 'updatearchiverpassword':
             case 'deletearchiver':
                 $this->handleAccount();
                 break;
