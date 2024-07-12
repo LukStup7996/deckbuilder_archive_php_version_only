@@ -119,8 +119,4 @@ class CardArchiveController
         }
         $this->jsonView->display($dtoList);
     }
-    private function cardArchiveEndcap(){
-        $succesM = "you have successfully searched for cards";
-        $this->jsonView->display($succesM);
-    }
 }
