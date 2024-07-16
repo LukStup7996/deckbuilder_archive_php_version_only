@@ -32,4 +32,50 @@ class DeckBuilderGateway
         $statement->execute();
         return true;
     }
+    public function removeDeckContentsFromDB($deckId){
+        $sql = "DELETE FROM cards_decklists WHERE deck_id = :deck_id";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':deck_id',$deckId);
+        $statement->execute();
+        return true;
+    }
+    public function pushMainDeckContentIntoDB($cardId,$deckId,$quantity){
+        $sideBoard = "No";
+        $maybeBoard = "No";
+        $sql = "INSERT INTO cards_decklists (card_id, deck_id, quantity,side_board,maybe_board) VALUES (:card_id,:deck_id,:quantity,:side_board,:maybe_board)";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':card_id',$cardId);
+        $statement->bindParam(':deck_id',$deckId);
+        $statement->bindParam(':quantity',$quantity);
+        $statement->bindParam(':side_board',$sideBoard);
+        $statement->bindParam(':maybe_board',$maybeBoard);
+        $statement->execute();
+        return $statement->rowCount() > 0;  
+    }
+    public function pushSideDeckContentIntoDB($cardId,$deckId,$quantity){
+        $sideBoard = "Yes";
+        $maybeBoard = "No";
+        $sql = "INSERT INTO cards_decklists (card_id, deck_id, quantity,side_board,maybe_board) VALUES (:card_id,:deck_id,:quantity,:side_board,:maybe_board)";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':card_id',$cardId);
+        $statement->bindParam(':deck_id',$deckId);
+        $statement->bindParam(':quantity',$quantity);
+        $statement->bindParam(':side_board',$sideBoard);
+        $statement->bindParam(':maybe_board',$maybeBoard);
+        $statement->execute();
+        return $statement->rowCount() > 0;  
+    }
+    public function pushMaybeDeckContentIntoDB($cardId,$deckId,$quantity){
+        $sideBoard = "No";
+        $maybeBoard = "Yes";
+        $sql = "INSERT INTO cards_decklists (card_id, deck_id, quantity,side_board,maybe_board) VALUES (:card_id,:deck_id,:quantity,:side_board,:maybe_board)";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':card_id',$cardId);
+        $statement->bindParam(':deck_id',$deckId);
+        $statement->bindParam(':quantity',$quantity);
+        $statement->bindParam(':side_board',$sideBoard);
+        $statement->bindParam(':maybe_board',$maybeBoard);
+        $statement->execute();
+        return $statement->rowCount() > 0;  
+    }    
 }
