@@ -15,7 +15,48 @@ class AccessDeckArchiveFromDBGateway
     ){
         $this->pdo = new PDO('mysql:host='.$host.';dbname='.$dbname,$user,$password);
     }
-
+    public function displayAllDecklists(){
+        $sql = "SELECT deck_id, user_id, deck_name, format FROM decklists ORDER BY deck_name";
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute();
+        $listOfDecksWithNameLike = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $this->mapAllDecklists($listOfDecksWithNameLike);
+     
+    }
+    public function getDecksByName($deckName){
+        $sql = "SELECT deck_id, user_id, deck_name, format FROM decklists WHERE deck_name LIKE :deck_name";
+        $statement = $this->pdo->prepare($sql);
+        $deckName = '%'.$deckName.'%';
+        $statement->bindParam(':deck_name',$deckName);
+        $statement->execute();
+        $listOfDecksWithNameLike = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $this->mapAllDecklists($listOfDecksWithNameLike);
+    }
+    public function getDecksByUserId($userId){
+        $sql = "SELECT deck_id, user_id, deck_name, format FROM decklists WHERE user_id = :userId";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':userId',$userId);
+        $statement->execute();
+        $listOfDecksByUser = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $this->mapAllDecklists($listOfDecksByUser);
+    }
+    public function getDecksByFormat($format){
+        $sql = "SELECT deck_id, user_id, user_id, deck_name, format FROM decklists WHERE format LIKE :format";
+        $statement = $this->pdo->prepare($sql);
+        $format = '%'.$format.'%';
+        $statement->bindParam(':format',$format);
+        $statement->execute();
+        $listOfDecksByFormat = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $this->mapAllDecklists($listOfDecksByFormat);
+    }
+    public function displayDecklistContent($deckId){
+        $sql = "SELECT card_id, deck_id, quantity, side_board, maybe_board FROM cards_decklists WHERE deck_id = :deckId ORDER BY card_id, side_board, maybe_board";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindParam(':deckId', $deckId);
+        $statement->execute();
+        $listOfDeckContents = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $this->mapAllDeckContents($listOfDeckContents);
+    }    
     public function checkForUserCreatedDBContent($userId){
         $sql = "SELECT deck_id, user_id, deck_name, format FROM decklists WHERE user_id LIKE :userId ORDER BY deck_id";
         $statement = $this->pdo->prepare($sql);
